@@ -10,7 +10,7 @@ public class SovaultCraftCommands {
     CommandSpec childServerNameSet =
             CommandSpec.builder()
                     .executor(new SovaultCommandExecuters.Childs.ServerSetNameExecuter())
-                    .arguments(GenericArguments.onlyOne(GenericArguments.string(Text.of("name"))))
+                    .arguments(GenericArguments.string(Text.of("name")))
                     .description(Text.of("サーバーの名前設定。"))
                     .build();
 
