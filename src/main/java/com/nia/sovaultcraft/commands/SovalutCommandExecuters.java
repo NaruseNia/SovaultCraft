@@ -56,7 +56,7 @@ class SovaultCommandExecuters{
             public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
                 ConfigurationManager config = ConfigurationManager.getInstance();
                 config.loadConfig();
-                config.getConfig().getNode("server_name").setValue(args.getOne("name"));
+                config.getConfig().getNode("server_name").setValue(args.getOne("name").get());
                 config.saveConfig();
 
                 src.sendMessage(Text.of(TextColors.GRAY, "Server name sets ", TextColors.GREEN, args.getOne("name").get()));
