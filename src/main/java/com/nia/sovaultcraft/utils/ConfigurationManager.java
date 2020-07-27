@@ -52,7 +52,7 @@ public class ConfigurationManager {
 
     public void loadConfig(){
         try{
-            loader.load();
+            config = loader.load();
         }catch (IOException e){
             logger.warn("Error! Could not load config file!");
         }

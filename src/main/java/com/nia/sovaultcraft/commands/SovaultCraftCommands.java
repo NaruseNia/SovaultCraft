@@ -17,7 +17,7 @@ public class SovaultCraftCommands {
     CommandSpec childServer =
             CommandSpec.builder()
                     .executor(new SovaultCommandExecuters.Childs.ServerCommandExecuter())
-                    .child(childServerNameSet, "nameset")
+                    .child(childServerNameSet, "setname")
                     .description(Text.of("このサーバーに関するコマンド。"))
                     .build();
 

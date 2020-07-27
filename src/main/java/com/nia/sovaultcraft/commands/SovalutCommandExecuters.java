@@ -42,8 +42,11 @@ class SovaultCommandExecuters{
         public static class ServerCommandExecuter extends SovaultCraft implements CommandExecutor{
             @Override
             public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-                String serverName = ConfigurationManager.getInstance().getConfig().getNode("server_name").getString();
-                src.sendMessage(Text.of(TextColors.GRAY, "This server name is", TextColors.GREEN, serverName));
+                ConfigurationManager config = ConfigurationManager.getInstance();
+                config.loadConfig();
+                String serverName = config.getConfig().getNode("server_name").getString();
+
+                src.sendMessage(Text.of(TextColors.GRAY, "This server name is ", TextColors.GREEN, serverName));
                 return CommandResult.success();
             }
         }
@@ -51,8 +54,12 @@ class SovaultCommandExecuters{
         public static class ServerSetNameExecuter extends SovaultCraft implements CommandExecutor{
             @Override
             public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
-                ConfigurationManager.getInstance().getConfig().getNode("server_name").setValue(args.getOne("name"));
-                src.sendMessage(Text.of(TextColors.GRAY, "Server name sets ", TextColors.GREEN, args.getOne("name")));
+                ConfigurationManager config = ConfigurationManager.getInstance();
+                config.loadConfig();
+                config.getConfig().getNode("server_name").setValue(args.getOne("name"));
+                config.saveConfig();
+
+                src.sendMessage(Text.of(TextColors.GRAY, "Server name sets ", TextColors.GREEN, args.getOne("name").get()));
                 return CommandResult.success();
             }
         }
